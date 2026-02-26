@@ -3,7 +3,7 @@ const zush = @import("zush");
 const vaxis = @import("vaxis");
 const vxfw = vaxis.vxfw;
 const iw = @import("iw/root.zig");
-
+const flasher = @import("./views/flasher.zig");
 // iw.d_verbose = false,
 
 // app state
@@ -126,13 +126,11 @@ pub fn main() !void {
 
     // We heap allocate our model because we will require a stable pointer to it in our Button
     // widget
-    const model = try allocator.create(Model);
+    const model = try allocator.create(flasher.Model);
     defer allocator.destroy(model);
 
     // Set the initial state of our button
-    model.* = .{
-        .activeTab = 0,
-    };
+    model.* = .{};
 
     try app.run(model.widget(), .{});
 }
